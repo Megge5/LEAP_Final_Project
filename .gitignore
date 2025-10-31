@@ -1,0 +1,29 @@
+cat > .gitignore <<'EOF'
+# ROS & build
+build/
+devel/
+*.pyc
+__pycache__/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*~ 
+*.swp
+
+# Large or generated files you may not want in Git
+*.bag
+*.bag.*
+*.log
+*.vhdx
+*.tar.xz
+
+# Map images (if you want to keep them, remove these lines)
+# *.pgm
+# *.yaml
+
+# Ignore secrets (never commit)
+*.key
+*.pem
+EOF
