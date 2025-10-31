@@ -1,0 +1,60 @@
+<!--<launch-->
+  <!-- ===================================== -->
+  <!-- FINAL PROJECT: TurtleBot3 + Gazebo    -->
+  <!-- Fixed version with robot_description  -->
+  <!-- ===================================== -->
+
+  <!-- Set TurtleBot3 model -->
+  <!--<env name="TURTLEBOT3_MODEL" value="burger"/-->
+
+  <!-- Load the TurtleBot3 URDF description -->
+  <!--param name="robot_description" command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro'" /-->
+
+  <!-- Launch Gazebo with your custom world -->
+  <!--include file="$(find gazebo_ros)/launch/empty_world.launch"-->
+    <!--arg name="world_name" value="$(find final_project_pkg)/worlds/my_custom_world.world"/-->
+  <!--/include-->
+
+  <!-- Spawn the TurtleBot3 in Gazebo -->
+  <!--node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"-->
+        <!--args="-urdf -model turtlebot3_burger -param robot_description"/-->
+<!--</launch-->
+
+
+<launch>
+  <!-- ========================================= -->
+  <!-- FINAL PROJECT: TurtleBot3 + Custom World  -->
+  <!-- Fully functional and stable launch file   -->
+  <!-- ========================================= -->
+
+  <!-- Set TurtleBot3 model -->
+  <env name="TURTLEBOT3_MODEL" value="burger"/>
+
+  <!-- Load TurtleBot3 URDF description -->
+  <param name="robot_description"
+         command="$(find xacro)/xacro '$(find turtlebot3_description)/urdf/turtlebot3_burger.urdf.xacro'" />
+
+  <!-- Launch Gazebo with your custom world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="verbose" value="true"/>
+    <!-- 👇 this line loads your own world -->
+    <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world"/>
+  </include>
+
+  <!-- Spawn the TurtleBot3 burger in your world -->
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+        args="-urdf -model turtlebot3_burger -param robot_description" />
+
+  <!-- Start joint state publisher -->
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
+
+  <!-- Start robot state publisher -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+</launch>
+

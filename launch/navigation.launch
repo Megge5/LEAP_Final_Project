@@ -1,0 +1,16 @@
+<launch>
+  <!-- Set TurtleBot3 model -->
+  <env name="TURTLEBOT3_MODEL" value="burger"/>
+
+  <!-- Launch the inbuilt TurtleBot3 Gazebo world -->
+  <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_world.launch">
+    <!-- Do NOT pass unsupported args like use_sim_time -->
+  </include>
+
+  <!-- Launch navigation using your saved map -->
+  <include file="$(find turtlebot3_navigation)/launch/turtlebot3_navigation.launch">
+    <arg name="map_file" value="$(find final_project_pkg)/maps/final_map.yaml"/>
+  </include>
+</launch>
+
+

@@ -1,0 +1,26 @@
+<launch>
+  <!-- Custom TurtleBot3 SLAM Launch File -->
+
+  <!-- Set robot model -->
+  <env name="TURTLEBOT3_MODEL" value="burger"/>
+
+  <!-- Start Gazebo with your custom world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find final_project_pkg)/worlds/my_custom_world.world"/>
+  </include>
+
+  <!-- Spawn TurtleBot3 -->
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_urdf" output="screen"
+        args="-urdf -model turtlebot3_burger -param robot_description"/>
+
+  <!-- Start SLAM using gmapping -->
+  <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
+    <param name="map_update_interval" value="5.0"/>
+    <param name="maxUrange" value="3.0"/>
+    <param name="minimumScore" value="50"/>
+  </node>
+
+  <!-- Launch RViz -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find turtlebot3_slam)/rviz/turtlebot3_slam.rviz"/>
+</launch>
+

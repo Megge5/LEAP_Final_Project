@@ -1,0 +1,115 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="two_room_world">
+
+    <!-- Basic environment -->
+    <include><uri>model://ground_plane</uri></include>
+    <include><uri>model://sun</uri></include>
+
+    <!-- ===== ROOM 1 walls ===== -->
+    <!-- Left wall -->
+    <model name="room1_wall_left">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.1 5 1</size></box></geometry><pose>-2.5 0 0.5 0 0 0</pose></collision>
+        <visual name="vis"><geometry><box><size>0.1 5 1</size></box></geometry>
+          <material><diffuse>0.8 0.2 0.2 1</diffuse></material>
+          <pose>-2.5 0 0.5 0 0 0</pose>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Right wall (with doorway gap) -->
+    <model name="room1_wall_right_top">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.1 2 1</size></box></geometry><pose>0 1.5 0.5 0 0 0</pose></collision>
+        <visual name="vis"><geometry><box><size>0.1 2 1</size></box></geometry>
+          <material><diffuse>0.8 0.2 0.2 1</diffuse></material>
+          <pose>0 1.5 0.5 0 0 0</pose>
+        </visual>
+      </link>
+    </model>
+    <model name="room1_wall_right_bottom">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.1 2 1</size></box></geometry><pose>0 -1.5 0.5 0 0 0</pose></collision>
+        <visual name="vis"><geometry><box><size>0.1 2 1</size></box></geometry>
+          <material><diffuse>0.8 0.2 0.2 1</diffuse></material>
+          <pose>0 -1.5 0.5 0 0 0</pose>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Top wall -->
+    <model name="room1_wall_top">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>2.5 0.1 1</size></box></geometry><pose>-1.25 2.5 0.5 0 0 0</pose></collision>
+        <visual name="vis"><geometry><box><size>2.5 0.1 1</size></box></geometry>
+          <material><diffuse>0.8 0.2 0.2 1</diffuse></material>
+          <pose>-1.25 2.5 0.5 0 0 0</pose>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Bottom wall -->
+    <model name="room1_wall_bottom">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>2.5 0.1 1</size></box></geometry><pose>-1.25 -2.5 0.5 0 0 0</pose></collision>
+        <visual name="vis"><geometry><box><size>2.5 0.1 1</size></box></geometry>
+          <material><diffuse>0.8 0.2 0.2 1</diffuse></material>
+          <pose>-1.25 -2.5 0.5 0 0 0</pose>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ===== ROOM 2 walls ===== -->
+    <model name="room2_wall_right">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.1 5 1</size></box></geometry><pose>2.5 0 0.5 0 0 0</pose></collision>
+        <visual name="vis"><geometry><box><size>0.1 5 1</size></box></geometry>
+          <material><diffuse>0.2 0.4 0.9 1</diffuse></material>
+          <pose>2.5 0 0.5 0 0 0</pose>
+        </visual>
+      </link>
+    </model>
+
+    <model name="room2_wall_top">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>2.5 0.1 1</size></box></geometry><pose>1.25 2.5 0.5 0 0 0</pose></collision>
+        <visual name="vis"><geometry><box><size>2.5 0.1 1</size></box></geometry>
+          <material><diffuse>0.2 0.4 0.9 1</diffuse></material>
+          <pose>1.25 2.5 0.5 0 0 0</pose>
+        </visual>
+      </link>
+    </model>
+
+    <model name="room2_wall_bottom">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>2.5 0.1 1</size></box></geometry><pose>1.25 -2.5 0.5 0 0 0</pose></collision>
+        <visual name="vis"><geometry><box><size>2.5 0.1 1</size></box></geometry>
+          <material><diffuse>0.2 0.4 0.9 1</diffuse></material>
+          <pose>1.25 -2.5 0.5 0 0 0</pose>
+        </visual>
+      </link>
+    </model>
+
+    <!-- ===== Obstacles inside rooms ===== -->
+    <include>
+      <uri>model://box</uri>
+      <pose>-1 1 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <uri>model://table</uri>
+      <pose>1 -1 0 0 0 0</pose>
+    </include>
+
+  </world>
+</sdf>
+
